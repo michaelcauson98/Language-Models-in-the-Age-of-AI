@@ -1,0 +1,13 @@
+{
+  "name": "n-grams-demo",
+  "private": true,
+  "scripts": {
+    "build:pca": "node data/data_processing.js",
+    "train:word2vec": "node data/train_word2vec.js"
+  },
+  "dependencies": {
+    "bad-words": "^4.0.0",
+    "ml-matrix": "^6.12.1",
+    "word2vec": "^1.1.5"
+  }
+}

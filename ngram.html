@@ -24,24 +24,6 @@
 
 <!-- NEW: n-gram script -->
 <script src="scripts/ngram_script.js"></script>
-
-<style>
-  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; color: #111827; }
-  .wrap { max-width: 900px; }
-  textarea { width: 100%; min-height: 140px; padding: 12px; font-size: 1rem; border: 1px solid #d1d5db; border-radius: 10px; }
-  button {padding: 12px; border: 1px; border-radius: 10px; cursor: pointer; }
-  button.primary { background: #4f46e5; color: white; }
-  .meta { margin: 14px 0; color: #374151; }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  th, td { border-bottom: 1px solid #e5e7eb; padding: 10px 8px; text-align: left; vertical-align: top; }
-  th { position: sticky; top: 0; background: #f9fafb; z-index: 1; }
-  code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
-  .controls { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
-  .controls label { color: #374151; font-size: 0.95rem; }
-  input[type="number"] { width: 110px; padding: 12px; border: 1px solid #d1d5db; border-radius: 10px; }
-  .hint { color: #6b7280; font-size: 0.9rem; margin-top: 8px; }
-  select { width: 400px; padding: 12px; border: 1px solid #d1d5db; border-radius: 10px; }
-</style>
 </head>
 
 <body>
@@ -104,7 +86,7 @@
     <button class="primary" id="submitBtn">Build N-gram table</button>
   </div>
 
-  <textarea id="textInput" placeholder="Paste text here..." rows="25" style="max-width:960px;"></textarea>
+  <textarea id="textInput" placeholder="Paste text here..." rows="25"></textarea>
   <div class="hint" id="hint"></div>
 
   <div class="status" id="status"></div>
@@ -113,12 +95,12 @@
 </div>
 
 <h3>N-grams as a generative model</h3>
-<p class="info" style="max-width:900px; margin-top:8px; color:#374151; font-size:1rem;">
+<p class="info">
   This demo generates text either by randomly sampling the next token from $P(w_i \mid w_{i-1},\dots,w_{i-n+1})$, 
   or by greedily (and deterministically) selecting the most likely next token at each step.
 </p>
 
-<div class="wrap" style="margin-top:10px;">
+<div class="wrap section-gap">
   <div class="controls">
     <label>
       Generate
@@ -128,7 +110,7 @@
 
     <label title="Optional: seeds generation using the last (n-1) tokens of this seed.">
       Seed (optional)
-      <input id="seedText" type="text" placeholder="e.g. the quick brown fox" style="width:260px; padding:12px; border:1px solid #d1d5db; border-radius:10px;">
+      <input id="seedText" class="narrow-input" type="text" placeholder="e.g. the quick brown fox">
     </label>
 
     <label title="Stop when model produces an end-of-sentence token.">
@@ -137,7 +119,7 @@
     </label>
     <label title="Random samples from the distribution; Greedy always picks the most likely next token.">
         Mode
-        <select id="genMode" style="padding:12px; border:1px solid #d1d5db; border-radius:10px;">
+        <select id="genMode">
           <option value="random" selected>Random</option>
           <option value="greedy">Greedy</option>
         </select>
@@ -147,8 +129,8 @@
     <button id="clearGenBtn">Clear</button>
   </div>
 
-  <div class="status" id="status2" style="padding:12px;"></div>
-  <textarea id="genOutput" readonly placeholder="Generated text will appear here..." style="margin-top:10px; max-width:960px;"></textarea>
+  <div class="status status-box" id="status2"></div>
+  <textarea id="genOutput" class="output-box" readonly placeholder="Generated text will appear here..."></textarea>
 </div>
 
 <script>
@@ -225,7 +207,7 @@
       <a class="footer-nav" href="Markov.html">◀ Back</a>
   </div>
   <div class="footer-right">
-        <span class="footer-nav disabled" aria-disabled="true">Next ▶</span>
+        <a class="footer-nav" href="word2vec.html">Next ▶</a>
     </div>
 </footer>
 

@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+data/corpus_clean.txt
+data/wikipedia_corpus.txt
+data/vectors.txt

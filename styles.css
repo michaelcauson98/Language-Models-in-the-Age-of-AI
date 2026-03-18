@@ -13,7 +13,6 @@
 
 body{
   margin:0;
-  /* Add extra bottom padding so fixed footer doesn't overlap page content */
   padding:28px 28px 120px;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background:var(--bg);
@@ -25,19 +24,18 @@ body{
 }
 
 .page-content{
-  max-width:900px;
+  max-width:1100px;
   width:94%;
   margin:0 auto;
 }
 
 .info {
-    max-width: 900px;
+    max-width: none;
     margin-top: 8px;
     color: #374151;
     font-size: 1rem;
 }
 
-/* Page title */
 h2{
   margin:6px 0 12px;
   color:var(--accent-2);
@@ -47,10 +45,12 @@ h2{
 
 .page-content h3{
   margin:28px 0 10px;
+  color: var(--accent-2);
+  font-size: 1.35rem;
 }
 
 .info-list{
-  max-width:900px;
+  max-width:none;
   margin-top:8px;
   color:#374151;
   font-size:1rem;
@@ -63,9 +63,124 @@ h2{
   background-color: #f6f8fa;
   font-style: italic;
   color: #374151;
+  border-radius: 0 10px 10px 0;
 }
 
-/* Plot container — responsive */
+.wrap{
+  width:100%;
+  max-width:none;
+}
+
+textarea{
+  width:100%;
+  min-height:140px;
+  padding:12px;
+  font-size:1rem;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font:inherit;
+  color:inherit;
+  background:#fff;
+}
+
+button{
+  padding:12px;
+  border:1px solid transparent;
+  border-radius:10px;
+  cursor:pointer;
+  font:inherit;
+}
+
+button.primary{
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+  color:#fff;
+}
+
+.meta{
+  margin:14px 0;
+  color:#374151;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th, td{
+  border-bottom:1px solid #e5e7eb;
+  padding:10px 8px;
+  text-align:left;
+  vertical-align:top;
+}
+
+th{
+  position:sticky;
+  top:0;
+  background:#f9fafb;
+  z-index:1;
+}
+
+code{
+  background:#f3f4f6;
+  padding:2px 6px;
+  border-radius:6px;
+}
+
+.controls{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.controls label{
+  color:#374151;
+  font-size:0.95rem;
+}
+
+input[type="number"],
+input[type="text"],
+select{
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font:inherit;
+  color:inherit;
+  background:#fff;
+}
+
+input[type="number"]{
+  width:110px;
+}
+
+select{
+  max-width:100%;
+}
+
+.hint{
+  color:#6b7280;
+  font-size:0.9rem;
+  margin-top:8px;
+}
+
+.narrow-input{
+  width:260px;
+}
+
+.section-gap{
+  margin-top:10px;
+}
+
+.status-box{
+  padding:12px;
+}
+
+.output-box{
+  margin-top:10px;
+}
+
 #plot{
   width: min(960px, 94%);
   height: 420px;
@@ -76,8 +191,6 @@ h2{
   overflow:hidden;
 }
 
-/* Button styling */
-/* Primary button styling (paramButton) */
 button#paramButton{
   margin-top:18px;
   padding:12px 20px;
@@ -98,7 +211,6 @@ button#paramButton{
   min-width:160px;
 }
 
-/* Hover / focus / active states */
 button#paramButton:hover{
   transform: translateY(-2px);
   box-shadow:0 16px 36px rgba(15,23,42,0.14);
@@ -118,14 +230,12 @@ button#paramButton[disabled]{
   box-shadow:none;
 }
 
-/* Small screens */
 @media (max-width:480px){
   body{ padding:16px 16px 120px; }
   #plot{ height:360px; }
   button#paramButton{ width:100%; padding:12px; font-size:15px; }
 }
 
-/* Page grid: plot + side panel */
 .page-grid{
   display:flex;
   align-items:flex-start;
@@ -136,7 +246,6 @@ button#paramButton[disabled]{
   flex: 0 0 240px;
 }
 
-/* Footer navigation styling */
 .site-footer{
   position: fixed;
   left: 0;
@@ -148,7 +257,7 @@ button#paramButton[disabled]{
   justify-content: space-between;
   align-items: center;
   padding: 6px 18px;
-  pointer-events: none; /* allow inner controls to opt-in */
+  pointer-events: none;
 }
 .site-footer .footer-left,
 .site-footer .footer-right{
@@ -188,7 +297,6 @@ mjx-container {
   background: transparent !important;
 }
 
-/* Hides the original TeX source after MathJax renders it */
 .mathjax-hidden,
 .MathJax_Preview,
 script[type^="math/tex"] {
@@ -196,8 +304,326 @@ script[type^="math/tex"] {
   visibility: hidden !important;
 }
 
-/* Ensures html2pdf/html2canvas only captures the rendered layer */
 mjx-assistive-mml,
 mjx-container + script {
   display: none !important;
+}
+
+/* Word2Vec page */
+.w2v-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.w2v-wrap { width: 100%; }
+.w2v-hero {
+  display: block;
+  margin-bottom: 18px;
+}
+.w2v-intro {
+  max-width: none;
+}
+.w2v-quote {
+  margin: 18px 0 0;
+  padding: 20px 22px;
+  border: 1px solid #dbe4f0;
+  border-left: 6px solid var(--accent-2);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f8fbff 0%, #fdfefe 100%);
+  box-shadow: 0 10px 28px rgba(15,23,42,0.05);
+  color: #334155;
+}
+.w2v-quote-title {
+  margin: 0 0 12px;
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.w2v-quote p {
+  margin: 0;
+  line-height: 1.75;
+}
+.w2v-diagram-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 22px;
+}
+.w2v-diagram {
+  width: min(80%, 640px);
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.w2v-status {
+  min-width: 160px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(44,123,229,0.08);
+  border: 1px solid rgba(44,123,229,0.16);
+  color: var(--accent-2);
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.w2v-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.06);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+.w2v-plot-card { margin-bottom: 18px; }
+.w2v-form-grid {
+  display: grid;
+  gap: 12px;
+  align-items: end;
+}
+.w2v-toolbar {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 14px;
+}
+.w2v-cosine-form {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto minmax(180px, 220px);
+  align-items: end;
+}
+.w2v-cosine-form .w2v-button-row {
+  margin-top: 0;
+  align-self: end;
+}
+.w2v-cosine-form .w2v-results {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.w2v-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #374151;
+  font-size: 0.95rem;
+  min-width: 0;
+}
+.w2v-form-grid input,
+.w2v-equation-term input,
+.w2v-form-grid select,
+.w2v-form-grid textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font: inherit;
+  color: inherit;
+  background: #fff;
+}
+.w2v-form-grid select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--accent-2) 50%),
+    linear-gradient(135deg, var(--accent-2) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+.w2v-form-grid input:focus,
+.w2v-equation-term input:focus,
+.w2v-form-grid select:focus {
+  outline: 3px solid rgba(44,123,229,0.18);
+  outline-offset: 1px;
+  border-color: rgba(44,123,229,0.32);
+}
+.w2v-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.w2v-button {
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #f8fafc;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+}
+.w2v-button.primary {
+  border-color: rgba(44,123,229,0.18);
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+}
+.w2v-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.w2v-tool-card {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.35fr) minmax(240px, 0.85fr);
+  gap: 18px;
+  align-items: start;
+}
+.w2v-tool-card-cosine {
+  grid-template-columns: 1fr;
+}
+.w2v-tool-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.w2v-tool-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.w2v-tool-heading h3 {
+  margin: 0;
+}
+.w2v-tool-panel,
+.w2v-tool-result-panel {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+}
+.w2v-tool-result-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100%;
+}
+.w2v-result-label {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+.w2v-results {
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  background: #fff;
+  border: 1px solid #dbe4f0;
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 64px;
+}
+.w2v-card h3 {
+  margin: 0 0 12px;
+  color: var(--accent-2);
+  font-size: 1.2rem;
+}
+.w2v-result-summary {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-weight: 600;
+}
+.w2v-neighbours {
+  margin: 0;
+  padding-left: 20px;
+}
+.w2v-neighbours li + li {
+  margin-top: 6px;
+}
+.w2v-neighbour-score {
+  color: #64748b;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.w2v-inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #f3f4f6;
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+.w2v-subtle {
+  margin: 0 0 10px;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+.w2v-inline-equation {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+.w2v-equation-term {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.w2v-equation-term span {
+  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.w2v-equation-term input {
+  text-align: center;
+}
+.w2v-operator {
+  flex: 0 0 32px;
+  align-self: flex-end;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--accent-2);
+  font-weight: 700;
+  line-height: 44px;
+}
+#plot {
+  width: 100%;
+  min-height: 480px;
+}
+
+@media (max-width:900px){
+  .w2v-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .w2v-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .w2v-tools {
+    gap: 18px;
+  }
+  .w2v-tool-card {
+    grid-template-columns: 1fr;
+  }
+  .w2v-cosine-form {
+    grid-template-columns: 1fr;
+  }
+  .w2v-inline-equation {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .w2v-operator {
+    flex: 0 0 auto;
+    align-self: center;
+    line-height: 1;
+  }
+}
+
+@media (max-width:640px){
+  .w2v-toolbar {
+    grid-template-columns: 1fr;
+  }
 }

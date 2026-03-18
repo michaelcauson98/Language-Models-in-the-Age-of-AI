@@ -22,24 +22,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <script src="scripts/Markov_script.js"></script>
-
-<style>
-  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; color: #111827; }
-  .wrap { max-width: 900px; }
-  textarea { width: 100%; min-height: 140px; padding: 12px; font-size: 1rem; border: 1px solid #d1d5db; border-radius: 10px; }
-  button {padding: 12px; border: 1px; border-radius: 10px; cursor: pointer; }
-  button.primary { background: #4f46e5; color: white; }
-  .meta { margin: 14px 0; color: #374151; }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  th, td { border-bottom: 1px solid #e5e7eb; padding: 10px 8px; text-align: left; vertical-align: top; }
-  th { position: sticky; top: 0; background: #f9fafb; z-index: 1; }
-  code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
-  .controls { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
-  .controls label { color: #374151; font-size: 0.95rem; }
-  input[type="number"] { width: 110px; padding: 12px; border: 1px solid #d1d5db; border-radius: 10px; }
-  .hint { color: #6b7280; font-size: 0.9rem; margin-top: 8px; }
-  select { width: 400px; padding: 12px; border: 1px solid #d1d5db; border-radius: 10px; }
-</style>
 </head>
 
 <body>
@@ -104,7 +86,7 @@
 
 <figure>
   <img src="images/markov.png" alt="Markov" width="800">
-  <figcaption style="color:#374151; font-size:0.9rem; max-width: 900px; margin-top:8px;">
+  <figcaption class="hint">
     Caption: Graph of a simple Markov chain, taken from <a href="https://www.akaike.ai/resources/on-the-origin-of-large-language-models-tracing-ais-big-bang" target="_blank" rel="noopener noreferrer">here</a>.
     Note that in these demonstrations, the full stop is represented alternatively as the end of sentence token $\langle /s\rangle$.
   </figcaption>
@@ -164,7 +146,6 @@
   and examine its most frequent bigrams.
   Warning: larger works may take a few seconds to process.
 </p>
-<body>
     <div class="wrap">
       <div class="controls">
         <label>
@@ -190,7 +171,7 @@
         <button class="primary" id="submitBtn">Build bigram table</button>
       </div>
   
-      <textarea id="textInput" placeholder="Paste text here..." rows="25" style="max-width:960px;"></textarea>
+      <textarea id="textInput" placeholder="Paste text here..." rows="25"></textarea>
       <div class="hint" id="hint"></div>
   
       <div class="status" id="status"></div>
@@ -212,8 +193,6 @@
         loadSelectedCorpus(); // clears textarea
     </script>
       
-</body>
-
 <h3>Bigrams as a generative model</h3>
 <p class="info">
   This demo generates text by randomly sampling the next token using the bigram probabilities
@@ -221,7 +200,7 @@
   but globally incoherent. 
 </p>
 
-<div class="wrap" style="margin-top:10px;">
+<div class="wrap section-gap">
   <div class="controls">
     <label>
       Generate
@@ -231,7 +210,7 @@
 
     <label title="Optional: start generation from the last token of this seed. Leave blank to start from &lt;s&gt;.">
       Prompt (optional)
-      <input id="seedText" type="text" placeholder="e.g., the quick brown" style="width:260px; padding:12px; border:1px solid #d1d5db; border-radius:10px;">
+      <input id="seedText" class="narrow-input" type="text" placeholder="e.g., the quick brown">
     </label>
 
     <label title="Stop when model produces an end-of-sentence token.">
@@ -243,8 +222,8 @@
     <button id="clearGenBtn">Clear</button>
   </div>
 
-  <div class="status" id="status2" style="padding:12px;"></div>
-  <textarea id="genOutput" readonly placeholder="Generated text will appear here..." style="margin-top:10px; max-width:960px;"></textarea>
+  <div class="status status-box" id="status2"></div>
+  <textarea id="genOutput" class="output-box" readonly placeholder="Generated text will appear here..."></textarea>
 </div>
 
 <script>
